@@ -1,7 +1,15 @@
 return {
 	"folke/which-key.nvim",
 	event = "VeryLazy",
-	opts = {},
+	opts = {
+		-- Label the leader prefixes so the popup shows "+window", "+find", etc.
+		spec = {
+			{ "<leader>w", group = "window" },
+			{ "<leader>f", group = "find" },
+			{ "<leader>s", group = "swap" },
+			{ "<leader>R", group = "rest (kulala)" },
+		},
+	},
 	keys = {
 		{
 			"<leader>?",

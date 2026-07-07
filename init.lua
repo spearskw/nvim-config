@@ -1,3 +1,4 @@
-require("config.options-pre")
+require("config.options") -- must run before lazy (sets mapleader)
 require("config.lazy")
-require("config.options-post")
+require("config.keymaps")
+require("config.autocmds")

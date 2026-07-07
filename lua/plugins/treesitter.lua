@@ -1,5 +1,5 @@
 local function config()
-	vim.treesitter.language.register("kulala_http", "http")
+	-- kulala.nvim registers http -> kulala_http itself once it builds its parser.
 	vim.treesitter.language.register("helm", "yaml")
 
 	-- NOTE (main branch): config.setup() only reads `install_dir`. Highlighting is

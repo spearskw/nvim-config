@@ -29,3 +29,13 @@ vim.opt.updatetime = 250 -- snappier CursorHold (diagnostic floats, etc.)
 
 -- ── Floating windows (nvim 0.11+) ─────────────────────────────────────────
 vim.opt.winborder = "rounded" -- rounded borders on hover/rename — matches the diagnostic float
+
+-- ── Folding (treesitter-driven) ───────────────────────────────────────────
+-- Folds follow the syntax tree, so in JSON every {object} and [array] is a
+-- fold: collapse "lockers" and keep "predictions" visible, etc. Safe to set
+-- globally — foldexpr() returns 0 (no folds) for buffers without a parser.
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "" -- keep the folded line's real syntax highlighting (nvim 0.10+)
+vim.opt.foldlevelstart = 99 -- open every file fully expanded; you fold on demand
+vim.opt.fillchars:append({ fold = " " }) -- no trailing ····· dots on a folded line

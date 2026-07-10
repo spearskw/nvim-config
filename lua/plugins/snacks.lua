@@ -16,5 +16,17 @@ return {
 			size = 1 * 1024 * 1024, -- 1 MB
 			line_length = 5000, -- also trip on very long single lines (minified/one-line data)
 		},
+		-- Interactive git TUI (branches, commits, files, staging). Needs the
+		-- `lazygit` binary on PATH: `brew install lazygit`.
+		lazygit = { enabled = true },
+	},
+	keys = {
+		{
+			"<leader>gg",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "Lazygit",
+		},
 	},
 }

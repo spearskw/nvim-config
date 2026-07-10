@@ -18,6 +18,10 @@ return {
 		backends = { "treesitter", "lsp", "markdown", "man" },
 		layout = { default_direction = "prefer_right", min_width = 30 },
 		show_guides = true,
+		-- JSON's treesitter symbols are Array/Object/String kinds, which aren't in
+		-- aerial's default filter_kind (curated for code). `false` = show every kind
+		-- for json only; other filetypes keep the default curated list.
+		filter_kind = { json = false },
 		-- Jump to symbol nearest the cursor when opening.
 		attach_mode = "global",
 	},

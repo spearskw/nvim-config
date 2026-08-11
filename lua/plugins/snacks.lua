@@ -11,6 +11,10 @@ return {
 		},
 		bigfile = {
 			enabled = true,
+			-- Don't nag that features are disabled — that's the point, just open
+			-- the file. (Also stops the double warning on gzipped files, where the
+			-- gzip plugin re-fires FileType and the notification would show twice.)
+			notify = false,
 			-- Any file larger than this: no treesitter, no LSP, no syntax,
 			-- so giant CSVs / logs open instantly instead of being parsed.
 			size = 1 * 1024 * 1024, -- 1 MB

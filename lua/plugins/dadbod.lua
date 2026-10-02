@@ -21,7 +21,9 @@ local function open_in_dbui(path, buf)
 	require("lazy").load({ plugins = { "vim-dadbod-ui" } })
 
 	local url = "sqlite:" .. path
-	local name = vim.fn.fnamemodify(path, ":~:.")
+	-- DBUI keeps saved queries in g:db_ui_save_location/<name>/, so the name
+	-- must be stable (not cwd-relative) and slash-free: "app.db (myproject)".
+	local name = ("%s (%s)"):format(vim.fn.fnamemodify(path, ":t"), vim.fn.fnamemodify(path, ":h:t"))
 	local dbs = vim.g.dbs or {}
 	local known = vim.iter(dbs):any(function(db)
 		return db.url == url

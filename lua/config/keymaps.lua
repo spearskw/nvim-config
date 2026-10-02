@@ -40,3 +40,15 @@ local window_cmds = {
 for lhs, spec in pairs(window_cmds) do
 	vim.keymap.set("n", "<leader>w" .. lhs, spec[1], { silent = true, desc = spec[2] })
 end
+
+-- Norwegian letters on an English keyboard: Alt+a/o/e → å/ø/æ, add Shift for
+-- capitals. Insert and command-line mode (so they work in searches too). The
+-- built-in digraphs still work as a fallback: <C-k>aa, <C-k>o/, <C-k>ae.
+local norwegian = {
+	["<M-a>"] = "å", ["<M-A>"] = "Å",
+	["<M-o>"] = "ø", ["<M-O>"] = "Ø",
+	["<M-e>"] = "æ", ["<M-E>"] = "Æ",
+}
+for lhs, char in pairs(norwegian) do
+	vim.keymap.set({ "i", "c" }, lhs, char, { desc = "Insert " .. char })
+end
